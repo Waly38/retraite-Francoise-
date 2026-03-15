@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Libération de Madame</title>
+
+<style>
+body{
+font-family: Arial;
+text-align:center;
+background:linear-gradient(#ffe082,#ffcc80);
+padding:40px;
+}
+
+h1{
+font-size:32px;
+}
+
+#jours{
+font-size:48px;
+margin:20px;
+}
+
+button{
+font-size:22px;
+padding:15px 30px;
+border-radius:12px;
+border:none;
+background:#ff5722;
+color:white;
+cursor:pointer;
+}
+
+#blague{
+font-size:22px;
+margin-top:25px;
+font-style:italic;
+}
+
+.barre{
+width:80%;
+height:30px;
+background:#ddd;
+margin:auto;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress{
+height:100%;
+background:#4caf50;
+width:0%;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>🎉 Compte à rebours retraite Françoise🎉</h1>
+<h2>Libération officielle : 31 décembre 2026</h2>
+
+<div id="jours"></div>
+
+<div class="barre">
+<div id="progress" class="progress"></div>
+</div>
+
+<br>
+
+<button onclick="update()">Clique pour voir l’avancement 😄</button>
+
+<div id="blague"></div>
+
+<script>
+
+const blagues = [
+
+"Le réveil prépare déjà son discours de départ. ⏰",
+
+"Encore un peu… après ça : sieste professionnelle 😴",
+
+"Le patron commence à transpirer… 😅",
+
+"La machine à café est en deuil anticipé ☕",
+
+"Bientôt : apéro sans limite le mardi 🍷",
+
+"Attention : risque élevé de grasses matinées",
+
+"Le stress a déjà posé sa démission 😎",
+
+"Les collègues comptent les jours aussi !",
+
+"Encore un effort… la liberté approche 🚀"
+
+];
+
+function update(){
+
+let retraite = new Date("2026-12-31");
+let debut = new Date("2026-01-01");
+let aujourd = new Date();
+
+let diff = retraite - aujourd;
+
+let jours = Math.ceil(diff/(1000*60*60*24));
+
+document.getElementById("jours").innerHTML =
+"⏳ Il reste <b>"+jours+"</b> jours avant la retraite !";
+
+let total = retraite - debut;
+let avance = aujourd - debut;
+
+let pourcent = (avance/total)*100;
+
+document.getElementById("progress").style.width =
+pourcent+"%";
+
+let blague = blagues[Math.floor(Math.random()*blagues.length)];
+
+document.getElementById("blague").innerHTML = blague;
+
+}
+
+update();
+
+</script>
+
+</body>
+</html>
